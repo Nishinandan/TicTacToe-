@@ -3,9 +3,10 @@ public class TicTacToe {
     static char[][] board = new char[3][3];
 
     public static void main(String[] args) {
+
         initializeBoard();
 
-        int slot = 5; // test input
+        int slot = 5;  // test input (1–9)
 
         int row = (slot - 1) / 3;
         int col = (slot - 1) % 3;
@@ -28,10 +29,13 @@ public class TicTacToe {
     }
 
     static boolean isValidMove(int row, int col) {
+
+        // check bounds
         if (row < 0 || row > 2 || col < 0 || col > 2) {
             return false;
         }
 
+        // check empty
         if (board[row][col] != '-') {
             return false;
         }
