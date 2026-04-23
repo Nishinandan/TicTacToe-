@@ -1,46 +1,32 @@
 public class TicTacToe {
 
-    static char[][] board = new char[3][3];
+    static char[][] board = {
+        {'-', '-', '-'},
+        {'-', '-', '-'},
+        {'-', '-', '-'}
+    };
 
     public static void main(String[] args) {
 
-        initializeBoard();
+        printBoard();
 
-        int slot = 5;  // test input (1–9)
-
-        int row = (slot - 1) / 3;
-        int col = (slot - 1) % 3;
-
-        if (isValidMove(row, col)) {
-            System.out.println("Valid Move");
-        } else {
-            System.out.println("Invalid Move");
-        }
-
+        makeMove(1, 1, 'X'); // test move
         printBoard();
     }
 
-    static void initializeBoard() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
-            }
+    static boolean isValidMove(int row, int col) {
+        if (row >= 0 && row < 3 && col >= 0 && col < 3) {
+            return board[row][col] == '-';
         }
+        return false;
     }
 
-    static boolean isValidMove(int row, int col) {
-
-        // check bounds
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
+    static void makeMove(int row, int col, char symbol) {
+        if (isValidMove(row, col)) {
+            board[row][col] = symbol;
+        } else {
+            System.out.println("Invalid Move");
         }
-
-        // check empty
-        if (board[row][col] != '-') {
-            return false;
-        }
-
-        return true;
     }
 
     static void printBoard() {
@@ -50,5 +36,6 @@ public class TicTacToe {
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
